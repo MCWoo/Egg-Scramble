@@ -1,11 +1,11 @@
 #pragma once
 
-#include "BulletCollision\CollisionDispatch\btGhostObject.h"
+#include <BulletPhysics/BulletCollision/CollisionDispatch/btGhostObject.h>
 
 #ifndef BULLET_PHYSICS
 #define BULLET_PHYSICS
-#include <BulletPhysics\btBulletDynamicsCommon.h>
-#include <BulletPhysics\btBulletCollisionCommon.h>
+#include <BulletPhysics/btBulletDynamicsCommon.h>
+#include <BulletPhysics/btBulletCollisionCommon.h>
 #endif
 
 class Entity;

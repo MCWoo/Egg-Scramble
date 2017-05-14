@@ -4,7 +4,7 @@
 #include "ServerNetwork.h"
 #include "network/NetworkData.h"
 #include "engine/engine.h"
-#include <btBulletDynamicsCommon.h>
+#include <BulletPhysics/btBulletCollisionCommon.h>
 
 #include <iostream>
 #include <chrono>

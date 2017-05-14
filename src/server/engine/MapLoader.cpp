@@ -1,14 +1,14 @@
 #include "MapLoader.h"
 #include "ObjectId.h"
-#include <ConvexDecomposition\ConvexDecomposition.h>
-#include <ConvexDecomposition\ConvexBuilder.h>
-#include "ConvexDecomposition\cd_vector.h"
-#include "ConvexDecomposition\cd_hull.h"
-#include <ConvexDecomposition\cd_wavefront.h>
+#include <BulletPhysics/ConvexDecomposition/ConvexDecomposition.h>
+#include <BulletPhysics/ConvexDecomposition/ConvexBuilder.h>
+#include <BulletPhysics/ConvexDecomposition/cd_vector.h>
+#include <BulletPhysics/ConvexDecomposition/cd_hull.h>
+#include <BulletPhysics/ConvexDecomposition/cd_wavefront.h>
 
-#include <BulletCollision\CollisionShapes\btTriangleMesh.h>
-#include <BulletCollision\CollisionShapes\btShapeHull.h>
-#include <BulletCollision\CollisionShapes\btBvhTriangleMeshShape.h>
+#include <BulletPhysics/BulletCollision/CollisionShapes/btTriangleMesh.h>
+#include <BulletPhysics/BulletCollision/CollisionShapes/btShapeHull.h>
+#include <BulletPhysics/BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h>
 
 MapLoader::MapLoader(btDiscreteDynamicsWorld* dynamicsWorld)
 {

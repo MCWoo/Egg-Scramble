@@ -42,7 +42,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endif
 #include <string.h>
 #include <stdio.h>
-#include "LinearMath/btAlignedObjectArray.h"
+#include <BulletPhysics/LinearMath/btAlignedObjectArray.h>
 
 
 

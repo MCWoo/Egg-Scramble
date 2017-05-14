@@ -38,7 +38,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "ConvexDecomposition.h"
 #include "vlookup.h"
-#include "LinearMath/btAlignedObjectArray.h"
+#include <BulletPhysics/LinearMath/btAlignedObjectArray.h>
 
 using namespace ConvexDecomposition;
 

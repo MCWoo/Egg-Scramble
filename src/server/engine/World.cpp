@@ -9,7 +9,7 @@
 #include "Flag.h"
 #include "Bullet.h"
 #include "WorldObstacle.h"
-#include "BulletCollision\CollisionDispatch\btGhostObject.h"
+#include <BulletPhysics/BulletCollision/CollisionDispatch/btGhostObject.h>
 #include "MapLoader.h"
 
 World::World()
