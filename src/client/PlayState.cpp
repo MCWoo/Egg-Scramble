@@ -478,7 +478,7 @@ void CPlayState::Draw()
             x1 = x + 445;
         }
 
-        for (int i = 0; i < team0.size(); i++)
+        for (unsigned int i = 0; i < team0.size(); i++)
         {
             Player* player =
                 (Player*)Scene::Instance()->GetEntity(ClassId::Player, team0.at(i)).get();
@@ -488,14 +488,14 @@ void CPlayState::Draw()
             score += ": ";
             score += std::to_string(player->GetScore());
 
-            TextRenderer::RenderText(score, x0, y0, 1.0f, glm::vec3(0.5f, 0.5f, 0.5f));
+            TextRenderer::RenderText(score, (float)x0, (float)y0, 1.0f, glm::vec3(0.5f, 0.5f, 0.5f));
 
             y0 = y0 + 80; // row height
         }
 
         // team 1
         std::vector<int> team1 = ClientGame::Team1();
-        for (int i = 0; i < team1.size(); i++)
+        for (unsigned int i = 0; i < team1.size(); i++)
         {
             Player* player =
                 (Player*)Scene::Instance()->GetEntity(ClassId::Player, team1.at(i)).get();
@@ -505,7 +505,7 @@ void CPlayState::Draw()
             score += ": ";
             score += std::to_string(player->GetScore());
 
-            TextRenderer::RenderText(score, x1, y1, 1.0f, glm::vec3(0.5f, 0.5f, 0.5f));
+            TextRenderer::RenderText(score, (float)x1, (float)y1, 1.0f, glm::vec3(0.5f, 0.5f, 0.5f));
 
             y1 = y1 + 80; // row height
         }
@@ -515,16 +515,16 @@ void CPlayState::Draw()
         // us
         TextRenderer::RenderText(
             std::to_string(ClientGame::Instance()->GetScores()[our_team]).c_str(),
-            25,
-            side_y + 325,
+            25.0f,
+            side_y + 325.0f,
             1.0f,
             glm::vec3(0.0f, 0.0f, 0.0f));
 
         // them
         TextRenderer::RenderText(
             std::to_string(ClientGame::Instance()->GetScores()[1 - our_team]).c_str(),
-            25,
-            side_y + 560,
+            25.0f,
+            side_y + 560.0f,
             1.0f,
             glm::vec3(0.0f, 0.0f, 0.0f));
 
@@ -535,7 +535,7 @@ void CPlayState::Draw()
         printf("score 1: %d\n", ClientGame::Instance()->GetScores()[1]);
         n = n - ClientGame::Instance()->GetScores()[0] - ClientGame::Instance()->GetScores()[1];
         TextRenderer::RenderText(
-            std::to_string(n).c_str(), 25, side_y + 805, 1.0f, glm::vec3(0.0f, 0.0f, 0.0f));
+            std::to_string(n).c_str(), 25.0f, side_y + 805.0f, 1.0f, glm::vec3(0.0f, 0.0f, 0.0f));
     }
     else if (Scene::Instance()->GetPlayer() != NULL)
     {
@@ -577,10 +577,10 @@ void CPlayState::Draw()
         x = Texture::GetWindowCenter(m_hudHealth->Width());
         y = 20;
 
-        float health = Scene::Instance()->GetPlayer()->GetHealth();
+        float health = (float)Scene::Instance()->GetPlayer()->GetHealth();
         std::shared_ptr<Shader>& shader = m_spriteRenderer->GetShader();
         GLint health_pos = shader->GetUniform("health_x_pos");
-        glUniform1i(health_pos, x + (m_hudHealth->Width() * (health / 100.0f)));
+        glUniform1i(health_pos, (int)(x + (m_hudHealth->Width() * (health / 100.0f))));
         m_spriteRenderer->DrawSprite(m_hudHealth.get(),
                                     glm::vec2(x, y),
                                     glm::vec2(m_hudHealth->Width(), m_hudHealth->Height()),
@@ -651,7 +651,7 @@ void CPlayState::Draw()
                 time += std::to_string(seconds);
         }
         glClear(GL_DEPTH_BUFFER_BIT);
-        TextRenderer::RenderText(time.c_str(), x + 54, y + 190, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+        TextRenderer::RenderText(time.c_str(), x + 54.0f, y + 190.0f, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 
         /////////// DEATH OVERLAY ////////////////////////////////////
         if (m_dead)

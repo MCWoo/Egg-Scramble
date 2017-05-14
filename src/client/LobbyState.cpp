@@ -33,7 +33,7 @@ void LobbyState::OnClick(int button, int action, double x, double y)
         RenderSelection();
 
         glGetIntegerv(GL_VIEWPORT, viewport);
-        glReadPixels(x, viewport[3] - y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &res);
+        glReadPixels((int)x, (int)(viewport[3] - y), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &res);
         if (action == GLFW_PRESS)
         {
             SoundsHandler::SoundOptions options;
@@ -170,7 +170,7 @@ void LobbyState::Draw()
         x = tx1 + 6;
         y = ty + 90 + 6; // skip header
 
-        for (int i = 0; i < team0.size(); i++)
+        for (unsigned int i = 0; i < team0.size(); i++)
         {
             TextRenderer::RenderText(ClientGame::Instance()->GetName(team0.at(i)).c_str(),
                                      x,
@@ -204,7 +204,7 @@ void LobbyState::Draw()
         x = tx2 + 6;
         y = ty + 90 + 6; // skip header
 
-        for (int i = 0; i < team1.size(); i++)
+        for (unsigned int i = 0; i < team1.size(); i++)
         {
             TextRenderer::RenderText(ClientGame::Instance()->GetName(team1.at(i)).c_str(),
                                      x,

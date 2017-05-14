@@ -16,7 +16,7 @@ bool Utils::ReadFile(const std::string& filename, std::string& outString)
     }
     else
     {
-        fprintf(stderr, "Impossible to open %s. Are you in the right directory ? Don't forget to read the FAQ !\n", filename);
+        fprintf(stderr, "Impossible to open %s. Are you in the right directory ? Don't forget to read the FAQ !\n", filename.c_str());
         return false;
     }
 

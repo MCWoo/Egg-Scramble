@@ -17,10 +17,10 @@ InstanceObject::InstanceObject(std::shared_ptr<Model> m_instanceModel, GLuint nu
 
     // Generate large list of semi-random transformation matrices
     m_modelMatrices = new glm::mat4[m_amount];
-    srand(glfwGetTime()); // initialize random seed
+    srand((unsigned int)glfwGetTime()); // initialize random seed
     GLfloat radius = 150.0f;
     GLfloat offset = 25.0f;
-    GLfloat size = sqrt(num) / 2.0f;
+    GLfloat size = (float)(sqrt(num) / 2.0f);
 
     int index = 0;
     for (GLfloat i = -size; i < size; i++)
@@ -30,9 +30,9 @@ InstanceObject::InstanceObject(std::shared_ptr<Model> m_instanceModel, GLuint nu
             glm::mat4 model;
             model = glm::translate(model, glm::vec3(0.0f, 0.0f, i * delta));
             model = glm::translate(model, glm::vec3(j * delta, 0.0f, 0.0f));
-            GLfloat scale = ((rand() % 20) / 100.0f + 0.05) * 5.0f;
+            GLfloat scale = ((rand() % 20) / 100.0f + 0.05f) * 5.0f;
             model = glm::scale(model, glm::vec3(scale));
-            GLfloat rotAngle = (rand() % 360);
+            GLfloat rotAngle = (float)(rand() % 360);
             model = glm::rotate(model, rotAngle, glm::vec3(0.0f, 0.8f, 0.0f));
 
             m_modelMatrices[index] = model;

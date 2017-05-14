@@ -349,11 +349,13 @@ void Scene::RenderScene()
     m_grass->Draw();
     // pumpkin->Draw();
 
-    for (auto& const obj : m_staticObjects)
+    for (const auto& obj : m_staticObjects)
+    {
         obj->Draw();
+    }
 
     // ground->Draw();
-    for (auto& const entity : entities)
+    for (const auto& entity : entities)
     {
         entity.second->Draw();
         // printf("entity ids are %d, %d\n", entity.second->GetClassId(),
@@ -395,11 +397,11 @@ void Scene::Update()
 {
     double nextTime = Utils::CurrentTime();
     float deltaTime = (float)(nextTime - m_lastTime);
-    m_lastTime = nextTime;
+    m_lastTime = (float)nextTime;
 
     m_cubeMap->Update(deltaTime);
     // ground->Update();
-    for (auto& const entity : entities)
+    for (const auto& entity : entities)
         entity.second->Update(deltaTime);
 }
 

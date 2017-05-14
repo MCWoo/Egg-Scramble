@@ -90,7 +90,7 @@ void Player::Update(float deltaTime)
             {
                 ChangeState(State::Idle);
             }
-            m_lastTime_t = Utils::CurrentTime();
+            m_lastTime_t = (float)Utils::CurrentTime();
         }
         glm::vec3 position = Position();
         m_lastPos_t.x = position.x;
@@ -356,13 +356,13 @@ void Player::ChangeState(State state)
         break;
     case State::Walk:
         m_model->PlayAnimation("walk");
-        m_lastTime_t = Utils::CurrentTime();
+        m_lastTime_t = (float)Utils::CurrentTime();
         m_lastPos_t = Position();
         break;
     case State::Jump:
     {
         m_model->PlayAnimation("jump");
-        m_lastTime_t = Utils::CurrentTime();
+        m_lastTime_t = (float)Utils::CurrentTime();
         m_lastPos_t = Position();
         auto& position = Position();
         SoundsHandler::SoundOptions options(position.x, position.y, position.z);

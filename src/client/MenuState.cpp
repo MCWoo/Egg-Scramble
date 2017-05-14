@@ -54,7 +54,7 @@ void CMenuState::OnClick(int button, int action, double x, double y)
     RenderSelection();
 
     glGetIntegerv(GL_VIEWPORT, viewport);
-    glReadPixels(x, viewport[3] - y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &res);
+    glReadPixels((int)x, (int)(viewport[3] - y), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &res);
 
     if (action == GLFW_PRESS)
     {
@@ -106,8 +106,8 @@ void CMenuState::RenderSelection()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     ////////////////// BACKGROUND//////////////////////////
-    float x = Texture::GetWindowCenter(m_bg->Width());
-    float y = Window::s_height / 2 - m_bg->Height() / 2;
+    float x = (float)Texture::GetWindowCenter(m_bg->Width());
+    float y = (float)Window::s_height / 2 - m_bg->Height() / 2;
 
     ////////////// USERNAME TEXTBOX /////////////////////////////////
     m_spriteRenderer->RenderSelection(1,
@@ -136,8 +136,8 @@ void CMenuState::Draw()
     InitTextures();
 
     ////////////////// BACKGROUND//////////////////////////
-    float x = Texture::GetWindowCenter(m_bg->Width());
-    float y = Window::s_height / 2 - m_bg->Height() / 2;
+    float x = (float)Texture::GetWindowCenter(m_bg->Width());
+    float y = (float)Window::s_height / 2 - m_bg->Height() / 2;
     m_spriteRenderer->DrawSprite(m_bg.get(),
                                 glm::vec2(x, y),
                                 glm::vec2(m_bg->Width(), m_bg->Height()),

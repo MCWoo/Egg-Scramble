@@ -40,7 +40,7 @@ void GOState::OnClick(int button, int action, double x, double y)
     RenderSelection();
 
     glGetIntegerv(GL_VIEWPORT, viewport);
-    glReadPixels(x, viewport[3] - y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &res);
+    glReadPixels((int)x, (int)(viewport[3] - y), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &res);
 
     if (action == GLFW_PRESS)
     {

@@ -78,7 +78,8 @@ int ConfigManager::GetAsInt(const std::string& key)
     }
     catch (...)
     {
-        assert("Cannot get key: %s as int! Value: %s\n", key.c_str(), value.c_str());
+        fprintf(stderr, "Cannot get key: %s as int! Value: %s\n", key.c_str(), value.c_str());
+        assert(false);
         return 0;
     }
 }
@@ -93,7 +94,8 @@ long ConfigManager::GetAsLong(const std::string& key)
     }
     catch (...)
     {
-        assert("Cannot get key: %s as long! Value: %s\n", key.c_str(), value.c_str());
+        fprintf(stderr, "Cannot get key: %s as int! Value: %s\n", key.c_str(), value.c_str());
+        assert(false);
         return 0;
     }
 }
@@ -108,7 +110,8 @@ float ConfigManager::GetAsFloat(const std::string& key)
     }
     catch (...)
     {
-        assert("Cannot get key: %s as float! Value: %s\n", key.c_str(), value.c_str());
+        fprintf(stderr, "Cannot get key: %s as float! Value: %s\n", key.c_str(), value.c_str());
+        assert(false);
         return 0;
     }
 }

@@ -79,7 +79,7 @@ public:
 
     const glm::mat4& ToWorld() const { return m_toWorld; }
     const glm::mat3& NormalMatrix() const { return m_normalMatrix; }
-    const glm::vec3& Position() const { return glm::vec3(m_toWorld[3]); }
+    glm::vec3 Position() const { return glm::vec3(m_toWorld[3]); }
     int GetClassId() const { return m_classId; }
     int GetObjId() const { return m_objId; }
     void SetClassId(int cid) { m_classId = cid; }

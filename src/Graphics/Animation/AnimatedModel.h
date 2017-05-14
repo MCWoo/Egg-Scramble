@@ -30,7 +30,7 @@ namespace Animation
         bool PlayAnimation(std::string name);
         bool SetAnimation(std::string name);
 
-        bool ChangeMaterial(int index, Material& material);
+        bool ChangeMaterial(unsigned int index, Material& material);
 
         void Update(float deltaTime);
         void Draw(bool useShader = true) const;

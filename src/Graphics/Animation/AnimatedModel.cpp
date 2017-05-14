@@ -65,7 +65,7 @@ namespace Animation
     }
 
     ///////////////////////////////////////////////////////////////////////
-    bool AnimatedModel::ChangeMaterial(int index, Material& material)
+    bool AnimatedModel::ChangeMaterial(unsigned int index, Material& material)
     {
         if (index >= m_mesh.m_materials.size())
         {

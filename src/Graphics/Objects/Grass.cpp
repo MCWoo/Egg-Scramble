@@ -19,7 +19,7 @@ Grass::Grass(const GLchar* path, GLuint num) : Entity(), m_amount(num)
     // Generate large list of semi-random transformation matrices
     m_amount = 10000;
     m_modelMatrices = new glm::mat4[m_amount];
-    srand(glfwGetTime()); // initialize random seed
+    srand((unsigned int)glfwGetTime()); // initialize random seed
     GLfloat radius = 150.0f;
     GLfloat offset = 25.0f;
     int index = 0;
@@ -30,10 +30,10 @@ Grass::Grass(const GLchar* path, GLuint num) : Entity(), m_amount(num)
             glm::mat4 model;
             model = glm::translate(model, glm::vec3(0.0f, 0.0f, i));
             model = glm::translate(model, glm::vec3(j, 0.0f, 0.0f));
-            GLfloat scale = ((rand() % 20) / 100.0f + 0.05) * 5.0f;
+            GLfloat scale = (float)((rand() % 20) / 100.0f + 0.05) * 5.0f;
             model = glm::scale(model, glm::vec3(scale));
 
-            GLfloat rotAngle = (rand() % 360);
+            GLfloat rotAngle = (float)(rand() % 360);
             model = glm::rotate(model, rotAngle, glm::vec3(0.0f, 0.8f, 0.0f));
 
             m_modelMatrices[index] = model;

@@ -874,12 +874,14 @@ void ClientGame::GameLoop()
 
         auto fp_stamp = curr_time - m_startTime;
 
-        int diff = fp_stamp.count();
+        int diff = (int)fp_stamp.count();
 
         diff = diff / 1000;
 
         if ((300 - diff) == (m_countdown - 1))
+        {
             m_countdown = 300 - diff;
+        }
 
         // Measure speed
         PrintFrameRate();
