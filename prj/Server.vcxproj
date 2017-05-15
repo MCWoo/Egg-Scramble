@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\Network\Serialization\Serializable.h" />
     <ClInclude Include="..\src\Basic\Singleton.h" />
     <ClInclude Include="..\src\ConfigManager.h" />
     <ClInclude Include="..\src\network\GameData.h" />

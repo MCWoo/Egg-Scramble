@@ -1,6 +1,8 @@
 #pragma once
-#include <string.h>
 #include "GameData.h"
+#include "Network/Serialization/Serializable.h"
+
+#include <string.h>
 
 const int g_maxPacketSize = 1000000;
 const int g_dataSize = 100; // Change this to the largest data size that is needed
@@ -45,11 +47,11 @@ struct PacketData
     std::uint8_t m_buffer[g_dataSize];
 };
 
-struct Packet
+struct Packet : public Serializable
 {
     PacketHeader m_header;
     PacketData m_data;
 
-    void Serialize(std::uint8_t* data) { memcpy(data, this, sizeof(Packet)); }
-    void Deserialize(std::uint8_t* data) { memcpy(this, data, sizeof(Packet)); }
+    void Serialize(std::uint8_t* data) override { memcpy(data, this, sizeof(Packet)); }
+    void Deserialize(std::uint8_t* data) override { memcpy(this, data, sizeof(Packet)); }
 };

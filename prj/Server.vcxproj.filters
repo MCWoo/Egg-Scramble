@@ -28,6 +28,9 @@
     <Filter Include="Source Files\Basic">
       <UniqueIdentifier>{1aaa8d7e-4d87-4021-834f-34c3ed36f184}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Network\Serialization">
+      <UniqueIdentifier>{6959084e-8d10-4688-a607-b8cc56993346}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\network\NetworkData.h">
@@ -158,6 +161,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Basic\Singleton.h">
       <Filter>Source Files\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Network\Serialization\Serializable.h">
+      <Filter>Source Files\Network\Serialization</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

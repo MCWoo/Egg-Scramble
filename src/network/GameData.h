@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Network/Serialization/Serializable.h"
+#include "server/engine/ObjectId.h"
+
 #include <string>
 #include <cstdint>
-#include "server/engine/ObjectId.h"
 
 namespace Constants
 {
@@ -63,14 +65,14 @@ enum class GameDataId
     Name,
 };
 
-struct GameInfo
+struct GameInfo : public Serializable
 {
     GameDataId id;
 
     // NETWORKING NOTE:
     // Usually, you want to serialize into PacketData's buf before you send
-    virtual void Serialize(std::uint8_t* data);
-    virtual void Deserialize(std::uint8_t* data);
+    virtual void Serialize(std::uint8_t* data) override;
+    virtual void Deserialize(std::uint8_t* data) override;
 };
 
 // Position info of object
