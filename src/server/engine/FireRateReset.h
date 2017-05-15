@@ -2,8 +2,6 @@
 #include "Basic/Singleton.h"
 
 #include <vector>
-#include <memory>
-#include "Network/GameData.h"
 
 class Weapon;
 
@@ -16,11 +14,10 @@ private:
     FireRateReset() = default;
 
 public:
-    unsigned int m_currentWorldTick = 0;
-
     ~FireRateReset();
 
     void ResetWeapons();
-
     void AddWeapon(Weapon* weapon);
+
+    unsigned int m_currentWorldTick = 0;
 };

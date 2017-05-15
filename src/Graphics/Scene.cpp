@@ -1,5 +1,7 @@
 #include "Scene.h"
 
+#include "ConfigManager.h"
+
 #include "Graphics/ModelManager.h"
 #include "Objects/CubeMap.h"
 #include "Objects/Cube.h"
@@ -15,9 +17,7 @@
 #include "client/Player.h"
 #include "client/ClientGame.h"
 
-#include "ConfigManager.h"
-
-#include "server/engine/ObjectId.h"
+#include "network/GameData.h"
 
 #include <algorithm>
 #include <vector>
@@ -448,102 +448,102 @@ void Scene::AddEntity(ClassId cid, int oid, std::unique_ptr<Entity> ent)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void Scene::AddEntity(PosInfo p)
+void Scene::AddEntity(const PosInfo& posInfo)
 {
     std::unique_ptr<Player> player;
     std::unique_ptr<Egg> egg;
     std::string skin_type;
     int eggtype = 0;
 
-    switch (p.cid)
+    switch (posInfo.cid)
     {
     case ClassId::Player:
-        player = std::make_unique<Player>(p.x, p.y, p.z, p.rotw, p.rotx, p.roty, p.rotz);
-        if (p.skin == 0)
+        player = std::make_unique<Player>(posInfo.x, posInfo.y, posInfo.z, posInfo.rotw, posInfo.rotx, posInfo.roty, posInfo.rotz);
+        if (posInfo.skin == 0)
         {
             skin_type = "assets/chickens/objects/chicken.obj";
         }
-        else if (p.skin == 1)
+        else if (posInfo.skin == 1)
         {
             skin_type = "assets/chickens/objects/robot_chicken.obj";
         }
-        else if (p.skin == 2)
+        else if (posInfo.skin == 2)
         {
             skin_type = "assets/chickens/objects/pinocchio_chicken.obj";
         }
         player->SetModelFile(skin_type);
         player->GetShader() = ShaderManager::Instance()->GetShader("Model");
-        player->SetObjId(p.oid);
-        player->SetClassId(static_cast<int>(p.cid));
-        player->SetTeam(p.team_id);
+        player->SetObjId(posInfo.oid);
+        player->SetClassId(static_cast<int>(posInfo.cid));
+        player->SetTeam(posInfo.team_id);
         // player->RotateTo(rotw, rotx, roty, rotz);
         // set main player if the oid matches
-        if (p.oid == ClientGame::Instance()->GetClientId())
+        if (posInfo.oid == ClientGame::Instance()->GetClientId())
             Scene::player = player.get();
         // players.push_back(player);
-        AddEntity(p.cid, p.oid, std::move(player));
+        AddEntity(posInfo.cid, posInfo.oid, std::move(player));
         break;
     case ClassId::Flag:
-        egg = std::make_unique<Egg>(p.x, p.y, p.z, "Easter_Egg");
+        egg = std::make_unique<Egg>(posInfo.x, posInfo.y, posInfo.z, "Easter_Egg");
         egg->SetColor(glm::vec3(0.27f, 0.16f, 0.0f));
         egg->GetShader() = ShaderManager::GetShader("Model");
-        egg->SetClassId(static_cast<int>(p.cid));
-        egg->SetObjId(p.oid);
-        AddEntity(p.cid, p.oid, std::move(egg));
+        egg->SetClassId(static_cast<int>(posInfo.cid));
+        egg->SetObjId(posInfo.oid);
+        AddEntity(posInfo.cid, posInfo.oid, std::move(egg));
         break;
     case ClassId::Bullet:
     {
         // std::unique_ptr<StaticObject> bullet =
         // std::make_unique<StaticObject>("assets/weapons/pumpkinseed.obj");
         std::unique_ptr<StaticObject> bullet;
-        switch (static_cast<WeaponType>(p.sub_id))
+        switch (static_cast<WeaponType>(posInfo.sub_id))
         {
         case WeaponType::SeedGun:
             bullet = std::make_unique<StaticObject>(ModelManager::GetModel("Pumpkin_Seed"));
-            bullet->Translate(glm::vec3(p.x, p.y, p.z));
-            AddEntity(p.cid, p.oid, std::move(bullet));
+            bullet->Translate(glm::vec3(posInfo.x, posInfo.y, posInfo.z));
+            AddEntity(posInfo.cid, posInfo.oid, std::move(bullet));
             break;
         case WeaponType::BounceGun:
             bullet = std::make_unique<StaticObject>(ModelManager::GetModel("Tomato"));
-            bullet->Translate(glm::vec3(p.x, p.y, p.z));
-            AddEntity(p.cid, p.oid, std::move(bullet));
+            bullet->Translate(glm::vec3(posInfo.x, posInfo.y, posInfo.z));
+            AddEntity(posInfo.cid, posInfo.oid, std::move(bullet));
             break;
         case WeaponType::GrenadeLauncher:
             bullet = std::make_unique<StaticObject>(ModelManager::GetModel("Potato"));
-            bullet->Translate(glm::vec3(p.x, p.y, p.z));
-            AddEntity(p.cid, p.oid, std::move(bullet));
+            bullet->Translate(glm::vec3(posInfo.x, posInfo.y, posInfo.z));
+            AddEntity(posInfo.cid, posInfo.oid, std::move(bullet));
             break;
         case WeaponType::TeleportGun:
             bullet = std::make_unique<StaticObject>(ModelManager::GetModel("Teleport"));
-            bullet->Translate(glm::vec3(p.x, p.y, p.z));
-            AddEntity(p.cid, p.oid, std::move(bullet));
+            bullet->Translate(glm::vec3(posInfo.x, posInfo.y, posInfo.z));
+            AddEntity(posInfo.cid, posInfo.oid, std::move(bullet));
             break;
         case WeaponType::BlastMine:
             eggtype = rand() % 2;
             if (eggtype == 1)
             {
-                egg = std::make_unique<Egg>(p.x, p.y, p.z, "Easter_Egg");
+                egg = std::make_unique<Egg>(posInfo.x, posInfo.y, posInfo.z, "Easter_Egg");
             }
             else
             {
-                egg = std::make_unique<Egg>(p.x, p.y, p.z, "Wood_Egg");
+                egg = std::make_unique<Egg>(posInfo.x, posInfo.y, posInfo.z, "Wood_Egg");
             }
             egg->SetColor(glm::vec3(0.27f, 0.16f, 0.0f));
             egg->GetShader() = ShaderManager::GetShader("Model");
-            egg->SetClassId(static_cast<int>(p.cid));
-            egg->SetObjId(p.oid);
-            AddEntity(p.cid, p.oid, std::move(egg));
+            egg->SetClassId(static_cast<int>(posInfo.cid));
+            egg->SetObjId(posInfo.oid);
+            AddEntity(posInfo.cid, posInfo.oid, std::move(egg));
             break;
         case WeaponType::Shotgun:
             bullet = std::make_unique<StaticObject>(ModelManager::GetModel("Pumpkin_Seed"));
-            bullet->Translate(glm::vec3(p.x, p.y, p.z));
-            AddEntity(p.cid, p.oid, std::move(bullet));
+            bullet->Translate(glm::vec3(posInfo.x, posInfo.y, posInfo.z));
+            AddEntity(posInfo.cid, posInfo.oid, std::move(bullet));
             break;
         default:
             std::unique_ptr<StaticObject> bullet =
                 std::make_unique<StaticObject>(ModelManager::GetModel("Tomato"));
-            bullet->Translate(glm::vec3(p.x, p.y, p.z));
-            AddEntity(p.cid, p.oid, std::move(bullet));
+            bullet->Translate(glm::vec3(posInfo.x, posInfo.y, posInfo.z));
+            AddEntity(posInfo.cid, posInfo.oid, std::move(bullet));
             break;
         }
 
@@ -553,23 +553,23 @@ void Scene::AddEntity(PosInfo p)
     {
         // std::unique_ptr<StaticObject> bullet =
         // std::make_unique<StaticObject>("assets/weapons/pumpkinseed.obj");
-        if (static_cast<CollectType>(p.sub_id) == CollectType::Weapon)
+        if (static_cast<CollectType>(posInfo.sub_id) == CollectType::Weapon)
         {
-            egg = std::make_unique<Egg>(p.x, p.y, p.z, "Robot_Egg");
+            egg = std::make_unique<Egg>(posInfo.x, posInfo.y, posInfo.z, "Robot_Egg");
             egg->SetColor(glm::vec3(0.27f, 0.16f, 0.0f));
             egg->GetShader() = ShaderManager::GetShader("Model");
-            egg->SetClassId(static_cast<int>(p.cid));
-            egg->SetObjId(p.oid);
-            AddEntity(p.cid, p.oid, std::move(egg));
+            egg->SetClassId(static_cast<int>(posInfo.cid));
+            egg->SetObjId(posInfo.oid);
+            AddEntity(posInfo.cid, posInfo.oid, std::move(egg));
         }
-        else if (static_cast<CollectType>(p.sub_id) == CollectType::PowerUp)
+        else if (static_cast<CollectType>(posInfo.sub_id) == CollectType::PowerUp)
         {
-            egg = std::make_unique<Egg>(p.x, p.y, p.z, "Wood_Egg");
+            egg = std::make_unique<Egg>(posInfo.x, posInfo.y, posInfo.z, "Wood_Egg");
             egg->SetColor(glm::vec3(0.27f, 0.16f, 0.0f));
             egg->GetShader() = ShaderManager::GetShader("Model");
-            egg->SetClassId(static_cast<int>(p.cid));
-            egg->SetObjId(p.oid);
-            AddEntity(p.cid, p.oid, std::move(egg));
+            egg->SetClassId(static_cast<int>(posInfo.cid));
+            egg->SetObjId(posInfo.oid);
+            AddEntity(posInfo.cid, posInfo.oid, std::move(egg));
         }
         break;
     }

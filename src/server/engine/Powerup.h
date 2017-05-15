@@ -1,5 +1,5 @@
 #pragma once
-#include "network/GameData.h"
+#include "network/GameData.h" // PowerUpType
 
 class Player;
 

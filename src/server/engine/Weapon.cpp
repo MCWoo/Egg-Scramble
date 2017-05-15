@@ -1,5 +1,7 @@
-
 #include "Weapon.h"
+
+#include <BulletPhysics/LinearMath/btMatrix3x3.h>
+#include <BulletPhysics/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h>
 
 Weapon::Weapon(btDiscreteDynamicsWorld* curWorld)
     : m_curWorld(curWorld)

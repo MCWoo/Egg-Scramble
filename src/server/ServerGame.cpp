@@ -1,5 +1,6 @@
 #include "ServerGame.h"
 #include "engine/Player.h"
+#include "engine/World.h"
 
 #include <algorithm>
 

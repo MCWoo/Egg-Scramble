@@ -1,10 +1,9 @@
+#include "Network/GameData.h"
 
-#include "World.h"
+#include <memory>   // unique_ptr
+#include <vector>
 
-#ifndef GAME_DATA
-#define GAME_DATA
-#include "../../network/GameData.h"
-#endif
+class World;
 
 typedef std::vector<PosInfo> pos_list;
 

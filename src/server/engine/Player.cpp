@@ -10,7 +10,9 @@
 #include "GrenadeLauncher.h"
 #include "RespawnHandler.h"
 #include <time.h>
-#include "../ServerGame.h"
+#include "server/ServerGame.h"
+#include "PowerUp.h"
+#include "Weapon.h"
 
 Player::Player(int objectid, int teamid, PosInfo pos, btDiscreteDynamicsWorld* physicsWorld)
     : Entity(ClassId::Player, objectid, physicsWorld)
@@ -228,6 +230,11 @@ bool Player::HasWeapon() const
 {
     return m_playerWeapon != nullptr;
 }
+
+WeaponType Player::GetPlayerWeaponType()
+{
+    return m_playerWeapon->GetWeaponType();
+};
 
 bool Player::HasPower()
 {

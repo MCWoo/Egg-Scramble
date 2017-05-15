@@ -1,17 +1,10 @@
 #pragma once
-
 #include "network/GameData.h"
-#include "FireRateReset.h"
+#include <BulletPhysics/LinearMath/btVector3.h>
 
-#include <vector>
-#include <memory>
-
-#ifndef BULLET_PHYSICS
-#define BULLET_PHYSICS
-#include <BulletPhysics\btBulletDynamicsCommon.h>
-#include <BulletPhysics\btBulletCollisionCommon.h>
-#endif
 class Entity;
+class btDiscreteDynamicsWorld;
+class btMatrix3x3;
 
 class Weapon
 {

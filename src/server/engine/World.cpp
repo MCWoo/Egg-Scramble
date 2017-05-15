@@ -1,16 +1,27 @@
 #include "World.h"
-#include "ObjectId.h"
-#include "../ServerGame.h"
+
+#include "Bullet.h"
+#include "CollectableSpawner.h"
 #include "FireRateReset.h"
 #include "FieldHandler.h"
-#include "RespawnHandler.h"
-#include "CollectableSpawner.h"
-#include "Player.h"
 #include "Flag.h"
-#include "Bullet.h"
-#include "WorldObstacle.h"
-#include <BulletPhysics/BulletCollision/CollisionDispatch/btGhostObject.h>
 #include "MapLoader.h"
+#include "ObjectId.h"
+#include "Player.h"
+#include "Powerup.h"
+#include "RespawnHandler.h"
+#include "server/ServerGame.h"
+#include "WorldObstacle.h"
+
+#include <BulletPhysics/BulletCollision/BroadphaseCollision/btbroadphaseinterface.h>
+#include <BulletPhysics/BulletCollision/CollisionDispatch/btCollisionDispatcher.h>
+#include <BulletPhysics/BulletCollision/CollisionDispatch/btGhostObject.h>
+#include <BulletPhysics/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h>
+
+class btBroadphaseInterface;
+class btCollisionDispatcher;
+class btDefaultCollisionConfiguration;
+class btSequentialImpulseConstraintSolver;
 
 World::World()
 {

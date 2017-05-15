@@ -13,13 +13,15 @@
 #include "Objects/Grass.h"
 #include "ShaderManager.h"
 #include "client/SpriteRenderer.h"
-#include "network/GameData.h"
+
+#include "server/engine/ObjectId.h"
 
 class Camera;
-class Player;
-class Shader;
 class CubeMap;
 class InstanceObject;
+class Player;
+struct PosInfo;
+class Shader;
 class StaticObject;
 
 struct PointLight;
@@ -80,7 +82,7 @@ public:
 
     static void Initialize() { Instance()->Setup(); }
     void AddEntity(ClassId cid, int oid, std::unique_ptr<Entity> ent);
-    void AddEntity(PosInfo p);
+    void AddEntity(const PosInfo& posInfo);
     void RemoveEntity(ClassId cid, int oid);
     std::unique_ptr<Entity>& GetEntity(ClassId cid, int oid);
 

@@ -1,6 +1,6 @@
 #pragma once
-#include "network/GameData.h"
 #include "FieldObject.h"
+#include "ObjectId.h"
 
 #include <map>
 

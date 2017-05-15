@@ -10,6 +10,11 @@
 class WorldObstacle;
 class MapLoader;
 
+class btBroadphaseInterface;
+class btCollisionDispatcher;
+class btDefaultCollisionConfiguration;
+class btSequentialImpulseConstraintSolver;
+
 typedef std::vector<PosInfo> pos_list;
 
 class World

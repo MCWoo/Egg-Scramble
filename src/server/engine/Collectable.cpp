@@ -1,12 +1,10 @@
 #include "Collectable.h"
 
 #include "CollectableSpawner.h"
-//#include "EntitySpawner.h"
+#include "EntitySpawner.h"
 #include "Player.h"
+#include "PowerUp.h"
 #include "Weapon.h"
-
-// List of m_weapons
-#include "SeedGun.h"
 
 #include <ctime>
 

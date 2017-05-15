@@ -1,5 +1,6 @@
 #include "Shotgun.h"
 #include "SimpleBulletCollision.h"
+#include "FireRateReset.h"
 
 Shotgun::Shotgun(btDiscreteDynamicsWorld* curworld) : Weapon(curworld)
 {

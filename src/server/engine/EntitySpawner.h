@@ -1,18 +1,18 @@
 #pragma once
 
 #include "Basic/Singleton.h"
-#include "Entity.h"
-#include "Weapon.h"
-#include "PowerUp.h"
-#include "BulletCollisionHandler.h"
 #include "network/GameData.h"
 
 #include <map>
-// class Entity;
-class Player;
-class Flag;
+
 class Bullet;
+class BulletCollisionHandler;
+class btDiscreteDynamicsWorld;
+class btRigidBody;
 class Collectable;
+class Entity;
+class Flag;
+class Player;
 
 class EntitySpawner : public Singleton<EntitySpawner>
 {

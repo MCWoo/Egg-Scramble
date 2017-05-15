@@ -29,7 +29,7 @@ class btPersistentManifold;
 class btIDebugDraw;
 struct InplaceSolverIslandCallback;
 
-#include "LinearMath/btAlignedObjectArray.h"
+#include <BulletPhysics/LinearMath/btAlignedObjectArray.h>
 
 
 ///btDiscreteDynamicsWorld provides discrete rigid body simulation

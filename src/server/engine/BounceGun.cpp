@@ -1,5 +1,7 @@
 #include "BounceGun.h"
+
 #include "BounceBulletCollision.h"
+#include "FireRateReset.h"
 
 BounceGun::BounceGun(btDiscreteDynamicsWorld* curworld) : Weapon(curworld)
 {

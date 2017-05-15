@@ -1,5 +1,5 @@
-
 #include "FireRateReset.h"
+
 #include "Weapon.h"
 
 FireRateReset::~FireRateReset()

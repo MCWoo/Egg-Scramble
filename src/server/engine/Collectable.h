@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Entity.h"
-#include "PowerUp.h"
-#include "network/GameData.h"
+#include "Network/GameData.h"
 
 class Player;
 class PowerUp;

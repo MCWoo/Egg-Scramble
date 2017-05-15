@@ -2,7 +2,6 @@
 #include "Basic/Singleton.h"
 
 #include <vector>
-#include <memory>
 
 class FieldObject;
 

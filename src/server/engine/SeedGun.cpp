@@ -1,5 +1,6 @@
 #include "SeedGun.h"
 #include "SimpleBulletCollision.h"
+#include "FireRateReset.h"
 
 SeedGun::SeedGun(btDiscreteDynamicsWorld* curworld) : Weapon(curworld)
 {

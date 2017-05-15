@@ -1,6 +1,7 @@
 #include "TeleportGun.h"
 #include "EntitySpawner.h"
 #include "PlayerModifierCollision.h"
+#include "FireRateReset.h"
 
 TeleportGun::TeleportGun(btDiscreteDynamicsWorld* curworld) : Weapon(curworld)
 {

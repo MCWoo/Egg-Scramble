@@ -1,5 +1,7 @@
 #include "GrenadeLauncher.h"
+
 #include "ExplosiveBulletCollision.h"
+#include "FireRateReset.h"
 
 GrenadeLauncher::GrenadeLauncher(btDiscreteDynamicsWorld* curworld) : Weapon(curworld)
 {

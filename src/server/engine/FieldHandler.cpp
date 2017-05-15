@@ -1,7 +1,6 @@
 #include "FieldHandler.h"
 
 #include "FieldObject.h"
-#include "network/GameData.h"
 
 FieldHandler::~FieldHandler()
 {

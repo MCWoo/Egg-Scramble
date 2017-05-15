@@ -2,7 +2,8 @@
 
 #include "Entity.h"
 #include "BulletCollisionHandler.h"
-#include "network/GameData.h"
+
+class BulletCollisionHandler;
 
 class Bullet : public Entity
 {

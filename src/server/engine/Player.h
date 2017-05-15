@@ -1,14 +1,10 @@
 #pragma once
-
 #include "Entity.h"
-#include "PowerUp.h"
-#include "Weapon.h"
+#include "network/GameData.h"
 
-#include <algorithm>
-#include <memory>
+#include <algorithm> // std::min, std::max
 #include <vector>
 
-#include "network/GameData.h"
 #ifdef max
     #undef max
 #endif
@@ -17,6 +13,8 @@
 #endif
 
 class Flag;
+class PowerUp;
+class Weapon;
 
 class Player : public Entity
 {
@@ -25,11 +23,11 @@ private:
     std::string m_name;
 
     PosInfo m_position;
-    std::vector<Flag*> m_flags = std::vector<Flag*>();
+    std::vector<Flag*> m_flags;
     int m_jumpSem = 2;
     int m_stunCount = 0;
     Weapon* m_playerWeapon = nullptr;
-    Weapon* m_peckWeapon;
+    Weapon* m_peckWeapon = nullptr;
     bool m_alive = true;          // am i alive?
     unsigned int m_deathTime = 0; // when did i die?
 
@@ -105,7 +103,7 @@ public:
     int GetStun() const { return m_stunCount; }
     void SetStun(int stun) { m_stunCount = stun; }
     bool HasWeapon() const;
-    WeaponType GetPlayerWeaponType() { return m_playerWeapon->GetWeaponType(); };
+    WeaponType GetPlayerWeaponType();
     Weapon* GetWeapon() { return m_playerWeapon; };
     bool IsAlive() const { return m_alive; }
     void SetAlive(bool a) { m_alive = a; }

@@ -1,24 +1,29 @@
 #include "EntitySpawner.h"
-#include "Entity.h"
+
 #include "Bullet.h"
-#include "Player.h"
+#include "BulletCollisionHandler.h"
+#include "Entity.h"
 #include "Flag.h"
-#include "../ServerGame.h"
+#include "Player.h"
+#include "Server/ServerGame.h"
 
 // Collectable weapons
+#include "BlastMine.h"
+#include "BounceGun.h"
 #include "Collectable.h"
 #include "CollectableSpawner.h"
-#include "SeedGun.h"
-#include "BounceGun.h"
 #include "GrenadeLauncher.h"
-#include "TeleportGun.h"
-#include "BlastMine.h"
+#include "SeedGun.h"
 #include "Shotgun.h"
+#include "TeleportGun.h"
 
 // Collectabable powerups
 #include "HealthGain.h"
 #include "JumpUp.h"
 #include "SpeedUp.h"
+
+#include <BulletPhysics/BulletDynamics/Dynamics/btRigidBody.h>
+#include <BulletPhysics/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h>
 
 Player* EntitySpawner::SpawnPlayer(int teamid, PosInfo pos, btDiscreteDynamicsWorld* physicsWorld)
 {
@@ -205,11 +210,10 @@ void EntitySpawner::SpawnCollectable(btDiscreteDynamicsWorld* curWorld, PowerUpT
         pow = new SpeedUp();
         break;*/
     default:
-        pow = nullptr;
         break;
     }
 
-    if (pow == nullptr)
+    if (!pow)
         return;
 
     std::pair<int, int> p = GetRandomLoc();

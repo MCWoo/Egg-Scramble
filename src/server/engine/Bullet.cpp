@@ -1,5 +1,7 @@
 #include "Bullet.h"
+
 #include "EntitySpawner.h"
+#include "BulletCollisionHandler.h"
 
 Bullet::Bullet(unsigned int objectid,
                int playerid,

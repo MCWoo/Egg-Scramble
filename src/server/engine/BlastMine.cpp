@@ -1,7 +1,9 @@
 #include "BlastMine.h"
-#include "EntitySpawner.h"
-#include "MineBulletHandler.h"
+
 #include "BlastField.h"
+#include "EntitySpawner.h"
+#include "FireRateReset.h"
+#include "MineBulletHandler.h"
 
 BlastMine::BlastMine(btDiscreteDynamicsWorld* curworld) : Weapon(curworld)
 {

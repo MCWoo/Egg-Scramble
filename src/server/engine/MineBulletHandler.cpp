@@ -1,7 +1,7 @@
 #include "MineBulletHandler.h"
+
 #include "BlastField.h"
 #include "FieldHandler.h"
-#include "network/GameData.h"
 #include "Player.h"
 
 MineBulletHandler::MineBulletHandler(FieldObject* field) : m_field(field)
